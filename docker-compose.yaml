@@ -1,0 +1,22 @@
+version: '1'
+services: 
+    app:
+      container_name: flask-app
+      image: visnusanker/my-flask-app:1.0
+      links:
+        - database
+      ports:
+        - 5000:5000
+      networks:
+        - Application
+    database:
+      container_name: database
+      image: visnusanker/my-sql-data
+      ports:
+        - 3305:3306
+      environment:
+        - MYSQL_ROOT_PASSWORD=root
+      networks:
+        - Application
+networks:
+  Application:
